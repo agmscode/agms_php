@@ -1,8 +1,8 @@
 <?php
 
 // Include settings and Agms file for code setup
-require('lib/Agms/Utility/Settings.php');
-require('lib/Agms/Agms.php');
+require('../lib/Agms/Utility/Settings.php');
+require('../lib/Agms/Agms.php');
 
 /**
  * Modify this path to be the absolute location of your AGMS PHP Library folder ("AGMS")
