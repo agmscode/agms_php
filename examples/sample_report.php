@@ -19,7 +19,7 @@ $rep = new \Agms\Report();
 
 $params = array(
 			'start_date' => array('value' => '2014-09-24'),
-			'end_date' => array('value' => '2015-11-09'),
+			'end_date' => array('value' => '2014-01-09'),
 		);
 
 $report = $rep->listTransactions($params);
@@ -39,8 +39,8 @@ unset($rep);
 $rep = new \Agms\Report();
 
 $params = array(
-			'StartDate' => array('value' => '2014-09-24'),
-			'EndDate' => array('value' => '2014-11-03'),
+			'StartDate' => array('value' => '2015-06-16'),
+			'EndDate' => array('value' => '2015-06-16'),
 		);
 
 $report = $rep->listSAFEs($params);

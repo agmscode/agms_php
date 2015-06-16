@@ -52,7 +52,10 @@ class Connect
 
 				$agms = $this->soapInit($url);
 
-				$response = $agms->$requestmethod(array($this->getParameterName($requestmethod) => $request));
+                if($this->getParameterName($requestmethod))
+                    $response = $agms->$requestmethod(array($this->getParameterName($requestmethod) => $request));
+                else
+                    $response = $agms->$requestmethod($request);
 
 			    if (\Agms\Utility\Settings::$Verbose) {
                     echo "REQUEST:\n\n" . htmlentities(str_ireplace('><', ">\n<", $agms->__getLastRequest())) . "\n\n";
@@ -72,10 +75,15 @@ class Connect
 		} else {
 
 			// CURL
-			
-			// Craft the XML request body for the request
+
+            if($this->getParameterName($requestmethod))
+                $requestArray = array($this->getParameterName($requestmethod) => $request);
+            else
+                $requestArray = $request;
+
+            // Craft the XML request body for the request
 			$requestBody = $this->createRequestBody(
-								array($this->getParameterName($requestmethod) => $request), 
+								$requestArray, 
 								'<' . $requestmethod . ' xmlns="https://gateway.agms.com/roxapi/">',
 								'</' . $requestmethod . '>'
 							);
@@ -192,36 +200,34 @@ class Connect
       
         switch ($curlCode) {
          case CURLE_SSL_CONNECT_ERROR:
-         case CURLE_PEER_FAILED_VERIFICATION:
          case CURLE_SSL_ENGINE_NOTFOUND:
          case CURLE_SSL_ENGINE_SETFAILED:
          case CURLE_SSL_CERTPROBLEM:
          case CURLE_SSL_CIPHER:
          case CURLE_SSL_CACERT:
-         case CURLE_SSL_CACERT_BADFILE:
-         case CURLE_SSH:
-         case CURLE_SSL_SHUTDOWN_FAILED:
-         case CURLE_SSL_CRL_BADFILE:
-         case CURLE_SSL_ISSUER_ERROR:
             throw new \Agms\Exception\SSLCertificateException($message);
             break;
          case CURLE_URL_MALFORMAT:
+         case CURLE_URL_MALFORMAT_USER:
          case CURLE_BAD_CONTENT_ENCODING:
             throw new \Agms\Exception\ClientErrorException($message);
-            break;
-         case CURLE_NOT_BUILT_IN:
-            throw new \Agms\Exception\ConfigurationException($message);
             break;
         case CURLE_UNSUPPORTED_PROTOCOL:
         case CURLE_COULDNT_RESOLVE_PROXY:
         case CURLE_COULDNT_RESOLVE_HOST:
         case CURLE_COULDNT_CONNECT:
-        case CURLE_REMOTE_ACCESS_DENIED:
-        case CURLE_OPERATION_TIMEDOUT:
         case CURLE_TOO_MANY_REDIRECTS:
         case CURLE_GOT_NOTHING:
         case CURLE_SEND_ERROR:
         case CURLE_RECV_ERROR:
+        case CURLE_PARTIAL_FILE:
+        case CURLE_HTTP_NOT_FOUND:
+        case CURLE_WRITE_ERROR:
+        case CURLE_READ_ERROR:
+        case CURLE_OPERATION_TIMEOUTED:
+        case CURLE_HTTP_RANGE_ERROR:
+        case CURLE_HTTP_POST_ERROR:
+        case CURLE_HTTP_PORT_FAILED:
             throw new \Agms\Exception\ConnectionException($message);
             break;
         case CURLE_FAILED_INIT:
@@ -322,18 +328,29 @@ class Connect
 
         $writer->writeRaw($header);
 
-        // get the root element name
-        $keys = array_keys($array);
-        $rootElementName = $keys[0];
+        if(sizeof($array) == 1) {
 
-        // open the root element
-        $writer->startElement($rootElementName);
+            // The request is inside of an envelope (objparameters, vparameter)
 
-        // create the body
-        $this->createElements($writer, $array[$rootElementName], $rootElementName);
+            // get the root element name
+            $keys = array_keys($array);
+            $rootElementName = $keys[0];
 
-        // close the root element and document
-        $writer->endElement();
+            // open the root element
+            $writer->startElement($rootElementName);
+
+            // create the body
+            $this->createElements($writer, $array[$rootElementName], $rootElementName);
+
+            // close the root element and document
+            $writer->endElement();
+
+        } else {
+
+            // There is no envelope, the array that we have is all of the data elements
+            $this->createElements($writer, $array);
+
+        }
 
         // footer
         $footer = $footerline . '
@@ -358,6 +375,21 @@ class Connect
             case 'DeleteFromSAFE':
                 return 'vParameter';
                 break;
+
+            case 'RecurringAdd':
+            case 'RecurringDelete':
+            case 'RecurringUpdate':
+            case 'RetrieveRecurringID':
+                return 'vRecurringParams';
+                break;
+
+            case 'RetrieveRecurringRecords':
+                return 'vRecurringSearchParams';
+                break;
+
+            case 'QuerySAFE':
+                return '';
+            break;
 
             default:
                 return 'objparameters';

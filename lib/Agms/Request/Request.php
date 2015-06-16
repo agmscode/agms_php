@@ -232,6 +232,8 @@ abstract class Request
 		// Fix for odd capitalization of Email
 		if ($fieldname == 'Email')
 			$fieldname = 'EMail';
+		if ($fieldname == 'ShippingEmail')
+			$fieldname = 'ShippingEMail';
 
 		// Check that field exists
 		if (!$this->fields[$fieldname]) {

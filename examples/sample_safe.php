@@ -13,7 +13,6 @@ require('init.php');
  * 
  **/
 
-
 $safe = new \Agms\SAFE();
 
 $params = array(
@@ -23,7 +22,7 @@ $params = array(
 			'cc_number' => array('value' => '4111111111111111'),
 			'cc_exp_date' => array('value' => '1220'),
 		);
-
+ 
 $result = $safe->add($params);
 
 $safe_id = $result['safe_id'];

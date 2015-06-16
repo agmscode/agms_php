@@ -72,6 +72,10 @@ class RecurringRequest extends Request
 		'NumberOfRetries' => array('setting' => '', 'value' => ''),
 	);
 
+	protected $fields4 = array(
+		'MerchantID' => array('setting' => '', 'value' => ''),
+	);
+
 	
 	// Fields that must be numeric
 	protected $numeric = array('InitialAmount', 'RecurringAmount', 'Quantity', 'NumberOfOccurrences', 'NumberOfRetries', 'CCNumber', 'CCExpDate', 'CheckABA', 'CheckAccount');
@@ -109,6 +113,22 @@ class RecurringRequest extends Request
 			case 'RecurringAdd':
 				$this->fields = $this->fields1;
 				$this->required = array('Frequency', 'NumberOfRetries');
+				break;
+
+			case 'RecurringUpdate':
+				$this->fields = $this->fields2;
+				$this->required = array('Frequency', 'NumberOfRetries', 'not finished');
+				break;
+
+			case 'RecurringDelete':
+				$this->fields = $this->fields3;
+				$this->required = array('Frequency', 'NumberOfRetries', 'not finished');
+				break;
+
+			case 'RetrieveRecurringID':
+				$this->fields = $this->fields4;
+				$this->required = array('MerchantID');
+				$this->enums = $this->numeric = $this->date = $this->state = $this->amount = array();
 				break;
 
 		} // switch op

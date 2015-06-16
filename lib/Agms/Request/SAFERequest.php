@@ -57,6 +57,8 @@ class SAFERequest extends Request
 		'ShippingZip' => array('setting' => '', 'value' => ''),
 		'ShippingCountry' => array('setting' => '', 'value' => ''),
 		'ShippingEMail' => array('setting' => '', 'value' => ''), // Capital M in EMail
+		'ShippingPhone' => array('setting' => '', 'value' => ''),
+		'ShippingFax' => array('setting' => '', 'value' => ''),
 		'ProcessorID' => array('setting' => '', 'value' => ''),
 		'TransactionID' => array('setting' => '', 'value' => ''),
 		'Tracking_Number' => array('setting' => '', 'value' => ''),

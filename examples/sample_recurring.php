@@ -14,22 +14,45 @@ require('init.php');
  * A sample recurring add
  * 
  **/
+/*
+$recur = new \Agms\Recurring();
+
+$params = array(
+			'payment_type' => 'creditcard',
+			'recurring_amount' => '20.00',
+			'cc_number' => '4111111111111111',
+			'cc_exp_date' => '1220',
+			'cc_cvv' => '987',
+			'first_name' => 'Test',
+			'last_name' => 'Recurring',
+			'email' => 'testing@agms.com',
+			'start_date' => '2014-11-09',
+			'end_date' => '2018-11-09',
+			'frequency' => 'months',
+			'number_of_retries' => '2'
+		);
+
+$result = $recur->add($params);
+
+echo "\n\n";
+var_dump($result);
+
+unset($recur, $result);
+*/
+
+/**
+ *
+ * A sample recurring retrieval
+ * 
+ **/
 
 $recur = new \Agms\Recurring();
 
 $params = array(
-			'RecurringAmount' => array('value' => '20.00'),
-			'CCNumber' => array('value' => '4111111111111111'),
-			'CCExpDate' => array('value' => '1220'),
-			'FirstName' => array('value' => 'Test'),
-			'LastName' => array('value' => 'Recurring'),
-			'StartDate' => array('value' => '2014-11-09'),
-			'EndDate' => array('value' => '2018-11-09'),
-			'Frequency' => array('value' => 'months'),
-			'NumberOfRetries' => '2'
+			'merchant_id' => '969',
 		);
 
-$result = $recur->add($params);
+$result = $recur->get($params);
 
 echo "\n\n";
 var_dump($result);

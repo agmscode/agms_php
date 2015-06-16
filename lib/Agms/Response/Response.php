@@ -91,24 +91,34 @@ abstract class Response
 			// We only map the end of the array containing data
 			// If this element is an array, then we map its individual sub-arrays
 			// Otherwise, we map
-			foreach ($array AS $key => $value) {
+			if($array) {
+				// result set is non-empty
 
-				if (is_array($value)) {
-					$response[] = $this->doMap($value);
-				} else {
+				foreach ($array AS $key => $value) {
 
-					if (!array_key_exists($key, $mapping)) {
-						if (\Agms\Utility\Settings::$Debug)
-							echo 'key ' . $key . ' value ' . $value . "\n";
-						throw new \Agms\Exception\UnexpectedException('Unmapped field ' . $key . ' in response');
+					if (is_array($value)) {
+						$response[] = $this->doMap($value);
+					} else {
+
+						if (!array_key_exists($key, $mapping)) {
+							if (\Agms\Utility\Settings::$Debug)
+								echo 'Missing mapping for key: ' . $key . ' with value: ' . $value . "\n";
+							throw new \Agms\Exception\UnexpectedException('Unmapped field "' . $key . '" in response');
+						}
+						else
+							$response[$mapping[$key]] = $value;
+				
 					}
-					else
-						$response[$mapping[$key]] = $value;
-			
+
+					$i++;
+
 				}
 
-				$i++;
+			} else {
 
+				// empty result set
+				$response = array();
+			
 			}
 
 		} // mapping
