@@ -299,7 +299,7 @@ abstract class Request
 	public function setMappingAlias($name, $field) 
 	{
 
-	    if (\Agms\Request::checkForName($name))
+	    if (\Agms\Request\Request::checkForName($name))
 	        throw new \Agms\Exception\ConfigurationException('Invalid custom field name "' . constant($name) . '", this is a reserved name and cannot be used.');
 	    else
 			self::$mapping_alias[$name] = $field;

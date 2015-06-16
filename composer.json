@@ -1,0 +1,52 @@
+{
+  "name": "agmscode/agms_php",
+  "description": "Agms PHP Library",
+  "keywords": [
+    "agms",
+    "AGMS",
+    "gateway",
+    "merchant",
+    "pay",
+    "payment",
+    "onlinepaymentprocessing",
+    "avant-garde marketing solutions inc",
+    "purchase",
+    "payment processing",
+    "api"
+  ],
+  "homepage": "http://onlinepaymentprocessing.com/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Michael Varian",
+      "homepage": "http://onlinepaymentprocessing.com/"
+    }
+  ],
+  "require": {
+    "php": ">=5.2.1",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "ext-libxml" : "*",
+    "ext-openssl": "*",
+    "ext-soap": "*",
+    "ext-xmlwriter": "*",
+    "ext-simplexml": "*",
+    "ext-dom": "*",
+    "ext-hash": "*"
+  },
+  "require-dev": {
+    "guzzle/plugin-mock": "~3.1",
+    "mockery/mockery": "~0.8",
+    "phpunit/phpunit": "~4.0",
+    "squizlabs/php_codesniffer": "~1.4"
+  },
+  "autoload": {
+    "psr-4": { "Agms\\" : "lib/Agms/" }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
+}

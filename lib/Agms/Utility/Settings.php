@@ -19,7 +19,7 @@ class Settings
 	 * Modify this path to be the absolute location of your AGMS PHP Library folder ("AGMS")
 	 * Set this path at runtime
 	 **/
-	public static $Path_To_Agms_Folder = '/set/this/path/';
+	public static $Path_To_Agms_Folder = './lib/Agms/';
 
 	/**
 	 * Setting Debug as true will enable trace options and output errors and exceptions for development purposes
@@ -130,9 +130,11 @@ class Settings
 		}
 
 
-		// Verify that developer has configured library specific to their account
+		/// Verify that developer has configured library specific to their account
 		if ((self::$Path_To_Agms_Folder == '/set/this/path/') || (self::$Api_Username == 'your username') || (self::$Api_Password == 'your password') || (self::$Api_Account == 'your account') || (\Agms\Utility\Settings::$Api_Key == 'your key'))
 		   throw new \Agms\Exception\ConfigurationException('The AGMS PHP library is still configured with installation defaults and will not function properly.  Please configure your path and API credentials for your server and try again.');
+
+
 
 
 

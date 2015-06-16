@@ -8,7 +8,7 @@ require('../lib/Agms/Agms.php');
  * Modify this path to be the absolute location of your AGMS PHP Library folder ("AGMS")
  * By default, this path is automatically set to be the path of the PHP file including init.php
  **/
-\Agms\Utility\Settings::$Path_To_Agms_Folder =  dirname(__FILE__) . '/lib/Agms/';
+\Agms\Utility\Settings::$Path_To_Agms_Folder =  dirname(__FILE__) . '/../lib/Agms/';
 
 
 /**
@@ -16,7 +16,6 @@ require('../lib/Agms/Agms.php');
  * DO NOT enable this for production use
  **/
 \Agms\Utility\Settings::$Debug = true;
-
 
 /**
  * Setting Verbose as true will output raw request/responses for development purposes
@@ -29,11 +28,10 @@ require('../lib/Agms/Agms.php');
  * These will act as default values for all API connections
  * These can optionally be overriden when instantiating a new API object
  **/
-\Agms\Utility\Settings::$Api_Username = 'your username';
-\Agms\Utility\Settings::$Api_Password = 'your password';
-\Agms\Utility\Settings::$Api_Account = 'your account number';
-\Agms\Utility\Settings::$Api_Key = 'your api key';
-
+\Agms\Utility\Settings::$Api_Username = 'osdgithub';
+\Agms\Utility\Settings::$Api_Password = 'Ks1m32aF@';
+\Agms\Utility\Settings::$Api_Account = '1002186';
+\Agms\Utility\Settings::$Api_Key = 'accf69cefaeb1d19702e33b0a9bfc9f8f0ab3c065d937fc';
 
 /**
  * Your identifier for what service, website, or app is sending this request
