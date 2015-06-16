@@ -12,6 +12,18 @@
 
 namespace Agms\Utility;
 
+use \Agms\Agms;
+use \Agms\Utility\Settings;
+use \Agms\Exception\ClientErrorException;
+use \Agms\Exception\SSLCertificateException;
+use \Agms\Exception\AuthenticationException;
+use \Agms\Exception\AuthorizationException;
+use \Agms\Exception\NotFoundException;
+use \Agms\Exception\UpgradeRequiredException;
+use \Agms\Exception\ServerErrorException;
+use \Agms\Exception\DownForMaintenanceException;
+use \Agms\Exception\UnexpectedException;
+
 class Connect
 {
 
@@ -23,7 +35,7 @@ class Connect
 	public function __construct() 
     {
 
-		if (class_exists('SOAPClient') && (\Agms\Utility\Settings::$Transport_Method == 'SOAPCLIENT'))
+		if (class_exists('SOAPClient') && (Settings::$Transport_Method == 'SOAPCLIENT'))
 			$this->transport_method = 'SOAPCLIENT';
 		else
 			$this->transport_method = 'CURL';
@@ -54,14 +66,14 @@ class Connect
 
 				$response = $agms->$requestmethod(array($this->getParameterName($requestmethod) => $request));
 
-			    if (\Agms\Utility\Settings::$Verbose) {
+			    if (Settings::$Verbose) {
                     echo "REQUEST:\n\n" . htmlentities(str_ireplace('><', ">\n<", $agms->__getLastRequest())) . "\n\n";
 					echo "RESPONSE:\n\n" . htmlentities(str_ireplace('><', ">\n<", $agms->__getLastResponse())) . "\n\n";
                 }
 
 			} catch (\SoapFault $e) {
 
-			    if (\Agms\Utility\Settings::$Debug) {
+			    if (Settings::$Debug) {
 					echo 'EXCEPTION: ' . $e->getMessage();
 			    }
 
@@ -81,7 +93,7 @@ class Connect
 							);
 
 			if (empty($requestBody))
-				throw new \Agms\Exception\ClientErrorException('Empty request body.');
+				throw new ClientErrorException('Empty request body.');
 
 			$header = $this->buildCurlHeader(strlen($requestBody));
 			$header[] = 'SOAPAction: https://gateway.agms.com/roxapi/' . $requestmethod;
@@ -90,7 +102,7 @@ class Connect
 	        
             curl_setopt($curl, CURLOPT_POSTFIELDS, $requestBody);
 
-            if (\Agms\Utility\Settings::$Verbose) {
+            if (Settings::$Verbose) {
                 echo 'REQUEST BODY: ' . htmlentities(str_ireplace('><', ">\n<", $requestBody));
             }
 
@@ -99,7 +111,7 @@ class Connect
 
             if ($curlCode != CURLE_OK) {
 
-                    if (\Agms\Utility\Settings::$Debug) {
+                    if (Settings::$Debug) {
                         echo 'CURL ERROR: ' . curl_error($curl);
                     }
 
@@ -111,12 +123,12 @@ class Connect
 
     	        $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-                if (\Agms\Utility\Settings::$Verbose) {
+                if (Settings::$Verbose) {
                     echo 'RESPONSE: ' . htmlentities(str_ireplace('><', ">\n<", $response));
                 }
                 
                 if ($statuscode == 0) {
-                    throw new \Agms\Exception\SSLCertificateException();
+                    throw new SSLCertificateException();
                 }
 
     	        if ($statuscode === 200 || $statuscode === 201 || $statuscode === 202) {
@@ -134,7 +146,7 @@ class Connect
 
     	        } else {
 
-        		    if (\Agms\Utility\Settings::$Debug) {
+        		    if (Settings::$Debug) {
         		    	echo 'CURL ERROR: ' . curl_error($curl);
         		    }
 
@@ -159,28 +171,28 @@ class Connect
       
         switch ($statusCode) {
          case 401:
-            throw new \Agms\Exception\AuthenticationException();
+            throw new AuthenticationException();
             break;
          case 403:
-             throw new \Agms\Exception\AuthorizationException($message);
+             throw new AuthorizationException($message);
             break;
          case 404:
-             throw new \Agms\Exception\NotFoundException();
+             throw new NotFoundException();
             break;
          case 426:
-             throw new \Agms\Exception\UpgradeRequiredException();
+             throw new UpgradeRequiredException();
             break;
          case 500:
-             throw new \Agms\Exception\ServerErrorException();
+             throw new ServerErrorException();
             break;
          case 503:
-             throw new \Agms\Exception\DownForMaintenanceException();
+             throw new DownForMaintenanceException();
             break;
          case 'Client':
-             throw new \Agms\Exception\ClientErrorException($message);
+             throw new ClientErrorException($message);
             break;
          default:
-            throw new \Agms\Exception\UnexpectedException('Unexpected HTTP_RESPONSE #' . $statusCode . ' ' . $message);
+            throw new UnexpectedException('Unexpected HTTP_RESPONSE #' . $statusCode . ' ' . $message);
             break;
         } // switch
 
@@ -203,14 +215,14 @@ class Connect
          case CURLE_SSL_SHUTDOWN_FAILED:
          case CURLE_SSL_CRL_BADFILE:
          case CURLE_SSL_ISSUER_ERROR:
-            throw new \Agms\Exception\SSLCertificateException($message);
+            throw new SSLCertificateException($message);
             break;
          case CURLE_URL_MALFORMAT:
          case CURLE_BAD_CONTENT_ENCODING:
-            throw new \Agms\Exception\ClientErrorException($message);
+            throw new ClientErrorException($message);
             break;
          case CURLE_NOT_BUILT_IN:
-            throw new \Agms\Exception\ConfigurationException($message);
+            throw new ConfigurationException($message);
             break;
         case CURLE_UNSUPPORTED_PROTOCOL:
         case CURLE_COULDNT_RESOLVE_PROXY:
@@ -222,12 +234,12 @@ class Connect
         case CURLE_GOT_NOTHING:
         case CURLE_SEND_ERROR:
         case CURLE_RECV_ERROR:
-            throw new \Agms\Exception\ConnectionException($message);
+            throw new ConnectionException($message);
             break;
         case CURLE_FAILED_INIT:
         case CURLE_OUT_OF_MEMORY:
          default:
-            throw new \Agms\Exception\UnexpectedException('Unexpected Curl Error #' . $statusCode . ' ' . $message);
+            throw new UnexpectedException('Unexpected Curl Error #' . $statusCode . ' ' . $message);
             break;
         } // switch
 
@@ -239,7 +251,7 @@ class Connect
 
 	    $ua = array(
 	        'http'=>array(
-	            'user_agent' => \Agms\Utility\Settings::$Ua_String . ' (AGMS PHP Lib ' . \Agms\Agms::getLibraryVersion() . ')'
+	            'user_agent' => Settings::$Ua_String . ' (AGMS PHP Lib ' . \Agms\Agms::getLibraryVersion() . ')'
 	            )
 	        );
 
@@ -252,7 +264,7 @@ class Connect
 					'encoding'=>'utf-8'
 				);
 
-	    if (\Agms\Utility\Settings::$Debug)
+	    if (Settings::$Debug)
 	    	$opts['trace'] = 1;
 
 		$agms = new \SoapClient($url, $opts);
@@ -268,8 +280,8 @@ class Connect
 	        return array(
 	            'Accept: application/xml',
 	            'Content-Type: text/xml; charset=utf-8',
-	            'User-Agent: ' . \Agms\Utility\Settings::$Ua_String . ' (AGMS PHP Lib ' . \Agms\Agms::getLibraryVersion() . ')',
-	            'X-ApiVersion: ' . \Agms\Agms::getAPIVersion(),
+	            'User-Agent: ' . Settings::$Ua_String . ' (AGMS PHP Lib ' . \Agms\Agms::getLibraryVersion() . ')',
+	            'X-ApiVersion: ' . Agms::getAPIVersion(),
 				'Content-length: ' . $length
 	        );
 
@@ -291,7 +303,7 @@ class Connect
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_FAILONERROR, false);
         
-        if (\Agms\Utility\Settings::$Debug)
+        if (Settings::$Debug)
         	curl_setopt($curl, CURLOPT_VERBOSE, true);
 
         return $curl;

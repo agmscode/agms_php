@@ -12,6 +12,8 @@
 
 namespace Agms\Response;
 
+use \Agms\Exception\ResponseException;
+
 class HPPResponse extends Response 
 {
 
@@ -33,7 +35,7 @@ class HPPResponse extends Response
 		$this->hash = $this->response[0];
 		
 		if (!$this->isSuccessful()) {
-			throw new \Agms\Exception\ResponseException('HPP Generation failed with message ' . $this->hash);
+			throw new ResponseException('HPP Generation failed with message ' . $this->hash);
 		}
 
 	} // constructor()

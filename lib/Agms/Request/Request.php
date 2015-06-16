@@ -12,6 +12,12 @@
 
 namespace Agms\Request;
 
+use \Agms\Utility\Settings;
+use \Agms\Utility\Connect;
+use \Agms\Exception\ConfigurationException;
+use \Agms\Exception\InvalidParameterException;
+use \Agms\Exception\RequestValidationException;
+
 abstract class Request 
 {
 
@@ -162,10 +168,10 @@ abstract class Request
 		    $constant_name = 'Custom_Name_' . $i;
 
 			// Verify that custom fieldnames don't impose on any reserved keywords
-		    if (\Agms\Request\Request::checkForName(\Agms\Utility\Settings::$$constant_name))
-		        throw new \Agms\Exception\ConfigurationException('Invalid custom field name "' . \Agms\Utility\Settings::$$constant_name . '" for ' . $constant_name . ', this is a reserved name and cannot be used.');
+		    if (Request::checkForName(Settings::$$constant_name))
+		        throw new ConfigurationException('Invalid custom field name "' . Settings::$$constant_name . '" for ' . $constant_name . ', this is a reserved name and cannot be used.');
 		    else
-				self::$mapping_alias[\Agms\Utility\Settings::$$constant_name] = 'Custom_Field_' . $i;
+				self::$mapping_alias[Settings::$$constant_name] = 'Custom_Field_' . $i;
 
 		}
 
@@ -235,7 +241,7 @@ abstract class Request
 
 		// Check that field exists
 		if (!$this->fields[$fieldname]) {
-			throw new \Agms\Exception\InvalidParameterException('Invalid fieldname ' . $name . '.');
+			throw new InvalidParameterException('Invalid fieldname ' . $name . '.');
 		}
 
 		// Ensure that setting parameters are forced to all lowercase and are case insensitive
@@ -244,7 +250,7 @@ abstract class Request
 
 		// Check that it is a valid setting
 		if (($parameter == 'setting') && !empty($value) && ($value != 'required') && ($value != 'disabled') && ($value != 'visible') && ($value != 'excluded') && ($value != 'hidden')) {
-			throw new \Agms\Exception\InvalidParameterException('Invalid parameter ' . $parameter . ' for ' . $name . '.');
+			throw new InvalidParameterException('Invalid parameter ' . $parameter . ' for ' . $name . '.');
 		}
 
 		switch($parameter) {
@@ -261,7 +267,7 @@ abstract class Request
 
 			default:
 				// Invalid parameter
-				throw new \Agms\Exception\InvalidParameterException('Invalid parameter ' . $parameter . ' for ' . $name . '.');
+				throw new InvalidParameterException('Invalid parameter ' . $parameter . ' for ' . $name . '.');
 				break;
 
 		}
@@ -299,8 +305,8 @@ abstract class Request
 	public function setMappingAlias($name, $field) 
 	{
 
-	    if (\Agms\Request::checkForName($name))
-	        throw new \Agms\Exception\ConfigurationException('Invalid custom field name "' . constant($name) . '", this is a reserved name and cannot be used.');
+	    if (Request::checkForName($name))
+	        throw new ConfigurationException('Invalid custom field name "' . constant($name) . '", this is a reserved name and cannot be used.');
 	    else
 			self::$mapping_alias[$name] = $field;
 
@@ -426,7 +432,7 @@ abstract class Request
 
 		if ($this->validateErrors > 0) {
 			// Validation errors exist
-			throw new \Agms\Exception\RequestValidationException('Request validation failed with ' . implode('  ', $this->validateMessages) . '.');
+			throw new RequestValidationException('Request validation failed with ' . implode('  ', $this->validateMessages) . '.');
 		}
 
 		foreach ($this->fields AS $field => $settings) {
@@ -486,7 +492,7 @@ abstract class Request
 				elseif (strtoupper($settings['value']) == 'FALSE')
 					$request[$field] = false;
 				else
-					$request[$field] = \Agms\Utility\Connect::sanitize($settings['value']);
+					$request[$field] = Connect::sanitize($settings['value']);
 			}
 
 		} // fields
@@ -506,7 +512,7 @@ abstract class Request
 		elseif (array_key_exists($name, $this->fields))
 			return $name;
 		else
-			throw new \Agms\Exception\InvalidParameterException('Invalid fieldname ' . $name . '.');
+			throw new InvalidParameterException('Invalid fieldname ' . $name . '.');
 
 	} // mapToField()
 
@@ -521,7 +527,7 @@ abstract class Request
 		elseif (array_key_exists($this->fields[$field]))
 			return $field;
 		else
-			throw new \Agms\Exception\InvalidParameterException('Invalid field ' . $field . '.');
+			throw new InvalidParameterException('Invalid field ' . $field . '.');
 
 	} // mapToName()
 

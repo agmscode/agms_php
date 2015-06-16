@@ -14,6 +14,8 @@
 
 namespace Agms;
 
+use \Agms\Exception\InvalidRequestException;
+
 class Report extends Agms 
 {
 
@@ -92,7 +94,7 @@ class Report extends Agms
 				break;
 
 			default:
-				throw new \Agms\Exception\InvalidRequestException('Invalid request to Reporting API ' . $this->op);
+				throw new InvalidRequestException('Invalid request to Reporting API ' . $this->op);
 				break;
 
 		} // op

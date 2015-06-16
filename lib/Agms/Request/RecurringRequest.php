@@ -12,6 +12,8 @@
 
 namespace Agms\Request;
 
+use \Agms\Exception\RequestValidationException;
+
 class RecurringRequest extends Request 
 {
 
@@ -132,7 +134,7 @@ class RecurringRequest extends Request
 		if ($errors == 0) {
 			return array('errors' => $errors, 'message' => $message);
 		} else {
-			throw new \Agms\Exception\RequestValidationException('Request validation failed with ' . implode('  ', $message) . '.');
+			throw new RequestValidationException('Request validation failed with ' . implode('  ', $message) . '.');
 		}
 		
 	} // validate()

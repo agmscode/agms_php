@@ -18,6 +18,10 @@
 
 namespace Agms;
 
+use \Agms\Utility\Settings;
+use \Agms\Exception\UnexpectedException;
+use \Agms\Exception\InvalidRequestException;
+
 class HPP extends Agms 
 {
 
@@ -59,7 +63,7 @@ class HPP extends Agms
 	{
 
 		if (!$this->hash) {
-			throw new \Agms\Exception\UnexpectedException('Requested HPP link but no hash generated in HPP.');
+			throw new UnexpectedException('Requested HPP link but no hash generated in HPP.');
 		} else {
 
 			$formatField = $this->request->getField('HPPFormat');
@@ -73,7 +77,7 @@ class HPP extends Agms
 
 			} else {
 
-				if (\Agms\Utility\Settings::$Hpp_Template == 'TEMPLATE_1')
+				if (Settings::$Hpp_Template == 'TEMPLATE_1')
 					return 'https://gateway.agms.com/HostedPaymentForm/HostedPaymentPage.aspx?hash=' . $this->hash;
 				else
 					return 'https://gateway.agms.com/HostedPaymentForm/HostedPaymentPage2.aspx?hash=' . $this->hash;
@@ -100,7 +104,7 @@ class HPP extends Agms
 			break;
 
 			default:
-				throw new \Agms\Exception\InvalidRequestException('Invalid request to HPP API ' . $this->op);
+				throw new InvalidRequestException('Invalid request to HPP API ' . $this->op);
 			break;
 
 		} // op

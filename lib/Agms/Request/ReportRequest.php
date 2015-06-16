@@ -12,6 +12,9 @@
 
 namespace Agms\Request;
 
+use \Agms\Exception\RequestValidationException;
+use \Agms\Exception\InvalidRequestException;
+
 class ReportRequest extends Request 
 {
 
@@ -92,7 +95,7 @@ class ReportRequest extends Request
 				break;
 
 			default:
-           		throw new \Agms\Exception\InvalidRequestException('Invalid op in Request.');
+           		throw new InvalidRequestException('Invalid op in Request.');
 				break;
 
 		} // switch op
@@ -119,7 +122,7 @@ class ReportRequest extends Request
 		if ($errors == 0) {
 			return array('errors' => $errors, 'message' => $message);
 		} else {
-			throw new \Agms\Exception\RequestValidationException('Request validation failed with ' . implode('  ', $message) . '.');
+			throw new RequestValidationException('Request validation failed with ' . implode('  ', $message) . '.');
 		}
 		
 	} // validate()

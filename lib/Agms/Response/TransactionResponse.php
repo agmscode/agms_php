@@ -12,6 +12,8 @@
 
 namespace Agms\Response;
 
+use \Agms\Exception\ResponseException;
+
 class TransactionResponse extends Response 
 {
 
@@ -47,7 +49,7 @@ class TransactionResponse extends Response
 
 		if (!$this->isSuccessful()) {
 			$responseArray = $this->toArray();
-			throw new \Agms\Exception\ResponseException('Transaction failed with error code ' . $responseArray['response_code'] . ' and message ' . $responseArray['response_message']);
+			throw new ResponseException('Transaction failed with error code ' . $responseArray['response_code'] . ' and message ' . $responseArray['response_message']);
 		}
 
 	}
