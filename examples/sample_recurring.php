@@ -25,6 +25,8 @@ $params = array(
 			'LastName' => array('value' => 'Recurring'),
 			'StartDate' => array('value' => '2014-11-09'),
 			'EndDate' => array('value' => '2018-11-09'),
+			'Frequency' => array('value' => 'months'),
+			'NumberOfRetries' => '2'
 		);
 
 $result = $recur->add($params);
