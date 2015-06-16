@@ -14,8 +14,6 @@
 
 namespace Agms;
 
-use \Agms\Exception\InvalidRequestException;
-
 class Recurring extends Agms 
 {
 
@@ -141,7 +139,7 @@ class Recurring extends Agms
 				break;
 
 			default:
-				throw new InvalidRequestException('Invalid request to Recurring API ' . $this->op);
+				throw new \Agms\Exception\InvalidRequestException('Invalid request to Recurring API ' . $this->op);
 				break;
 
 		} // op

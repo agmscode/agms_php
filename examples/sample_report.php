@@ -1,12 +1,12 @@
-<?php namespace Agms;?>
 <h1>Report Usage Examples</h1>
 <br /><br />
 <a href="index.php">Back to Index</a>
 <br /><br />
 <pre>
 <?php
+
 require('init.php');
-use \Agms\Report;
+
 
 
 /**
@@ -15,7 +15,7 @@ use \Agms\Report;
  * 
  **/
 
-$rep = new Report();
+$rep = new \Agms\Report();
 
 $params = array(
 			'start_date' => array('value' => '2014-09-24'),
@@ -36,7 +36,7 @@ unset($rep);
  * 
  **/
 
-$rep = new Report();
+$rep = new \Agms\Report();
 
 $params = array(
 			'StartDate' => array('value' => '2014-09-24'),

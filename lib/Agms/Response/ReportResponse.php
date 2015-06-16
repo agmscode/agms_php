@@ -12,9 +12,6 @@
 
 namespace Agms\Response;
 
-use \Agms\Agms;
-use \Agms\Exception\InvalidRequestException;
-
 class ReportResponse extends Response 
 {
 
@@ -104,9 +101,7 @@ class ReportResponse extends Response
 					'customfield18' => 'custom_field_18',
 					'customfield19' => 'custom_field_19',
 					'customfield20' => 'custom_field_20',
-                    'cardpresent' => 'card_present',
-                    'cardtype' => 'card_type',
-					'receipttype' => 'receipt_type',
+                    'receipttype' => 'receipt_type',
 					'responsestatuscode' => 'response_code',
 					'responsestatusmsg' => 'response_message',
 					'responsetransid' => 'response_transaction_id',
@@ -117,6 +112,8 @@ class ReportResponse extends Response
 					'createuser' => 'created_by',
 					'moduser' => 'modified_by',
 					'useragent' => 'user_agent',
+					'cardpresent' => 'card_present',
+                    'cardtype' => 'card_type',
 				);
 
 
@@ -215,16 +212,17 @@ class ReportResponse extends Response
                     'moduser' => 'modified_by',
                     'useragent' => 'user_agent',
                 );
+
                 $array = array_values((array) $response->transactions);
 
-				if ($array)
+                if ($array)
 					$this->response = $array[0];
 				else
 					$this->response = array();
 				break;
 
 			default:
-           		throw new InvalidRequestException('Invalid op in Response.');
+           		throw new \Agms\Exception\InvalidRequestException('Invalid op in Response.');
 				break;
 
 		} // switch op
@@ -233,24 +231,6 @@ class ReportResponse extends Response
 
 
 	/************ Public Functions ************/
-
-	// Overload to insert card_type as part of response data
-	public function toArray() 
-	{
-
-		$array = parent::toArray();
-        if (sizeof($array) > 0) {
-			foreach ($array AS $index => $data) {
-                if (array_key_exists('cc_number', $data)) {
-                    $data['card_type'] = Agms::whatCardType($data['cc_number']);
-                }
-                $array[$index] = $data;
-			}
-		}
-
-		return $array;
-
-	} // toArray()
 
 
 	/************ Private Functions ************/

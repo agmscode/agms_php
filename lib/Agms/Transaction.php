@@ -14,8 +14,6 @@
 
 namespace Agms;
 
-use \Agms\Exception\InvalidRequestException;
-
 class Transaction extends Agms 
 {
 
@@ -62,7 +60,7 @@ class Transaction extends Agms
 				break;
 
 			default:
-				throw new InvalidRequestException('Invalid request to Transaction API ' . $this->op);
+				throw new \Agms\Exception\InvalidRequestException('Invalid request to Transaction API ' . $this->op);
 				break;
 
 		} // op

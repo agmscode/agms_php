@@ -12,8 +12,6 @@
 
 namespace Agms\Request;
 
-use \Agms\Exception\RequestValidationException;
-
 class HPPRequest extends Request 
 {
 
@@ -145,7 +143,7 @@ class HPPRequest extends Request
 		if ($errors == 0) {
 			return array('errors' => $errors, 'message' => $message);
 		} else {
-			throw new RequestValidationException('Request validation failed with ' . implode('  ', $message) . '.');
+			throw new \Agms\Exception\RequestValidationException('Request validation failed with ' . implode('  ', $message) . '.');
 		}
 		
 	} // validate()

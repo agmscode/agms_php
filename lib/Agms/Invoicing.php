@@ -14,8 +14,6 @@
 
 namespace Agms;
 
-use \Agms\Exception\InvalidRequestException;
-
 class Invoicing extends Agms 
 {
 
@@ -117,7 +115,7 @@ class Invoicing extends Agms
 
 
 			default:
-				throw new InvalidRequestException('Invalid request to Invoicing API ' . $this->op);
+				throw new \Agms\Exception\InvalidRequestException('Invalid request to Invoicing API ' . $this->op);
 				break;
 
 		} // op

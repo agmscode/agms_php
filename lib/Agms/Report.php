@@ -14,8 +14,6 @@
 
 namespace Agms;
 
-use \Agms\Exception\InvalidRequestException;
-
 class Report extends Agms 
 {
 
@@ -43,6 +41,7 @@ class Report extends Agms
 		} // foreach params
 
 		$this->execute();
+		
         return $this->response->toArray();
 		
 	} // listTransactions()
@@ -93,7 +92,7 @@ class Report extends Agms
 				break;
 
 			default:
-				throw new InvalidRequestException('Invalid request to Reporting API ' . $this->op);
+				throw new \Agms\Exception\InvalidRequestException('Invalid request to Reporting API ' . $this->op);
 				break;
 
 		} // op

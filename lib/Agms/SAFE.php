@@ -14,8 +14,6 @@
 
 namespace Agms;
 
-use \Agms\Exception\InvalidRequestException;
-
 class SAFE extends Agms 
 {
 
@@ -121,7 +119,7 @@ class SAFE extends Agms
 				break;
 
 			default:
-				throw new InvalidRequestException('Invalid request to SAFE API ' . $this->op);
+				throw new \Agms\Exception\InvalidRequestException('Invalid request to SAFE API ' . $this->op);
 				break;
 
 		} // op

@@ -12,10 +12,14 @@
 
 namespace Agms\Utility;
 
-use \Agms\Exception\ConfigurationException;
-
 class Settings 
 {
+
+	/**
+	 * Modify this path to be the absolute location of your AGMS PHP Library folder ("AGMS")
+	 * Set this path at runtime
+	 **/
+	public static $Path_To_Agms_Folder = './lib/Agms/';
 
 	/**
 	 * Setting Debug as true will enable trace options and output errors and exceptions for development purposes
@@ -97,13 +101,18 @@ class Settings
 	public static function verifyEnvironment() 
 	{
 
-		
+		// Verify that PHP is a high enough version to run
+		if (version_compare(PHP_VERSION, '5.2.1', '<')) {
+		    throw new \Agms\Exception\ConfigurationException('PHP version >= 5.2.1 required.');
+		}
+
+
 		// Verify that all necessary configuration constants have been defined
-		$requiredSettings = array('Api_Username', 'Api_Password','Api_Account','Api_Key', 'Transport_Method', 'Debug', 'Verbose', 'Ua_String', 'Hpp_Template');
+		$requiredSettings = array('Path_To_Agms_Folder', 'Api_Username', 'Api_Password','Api_Account','Api_Key', 'Transport_Method', 'Debug', 'Verbose', 'Ua_String', 'Hpp_Template');
 
 		foreach ($requiredSettings AS $setting) {
 		    if (!isset(self::$$setting)) {
-		        throw new ConfigurationException('Required constants are not defined (' . $setting . ').');
+		        throw new \Agms\Exception\ConfigurationException('Required constants are not defined (' . $setting . ').');
 		    }
 		} // requiredSettings
 
@@ -116,14 +125,16 @@ class Settings
 
 		foreach ($requiredExtensions AS $ext) {
 		    if (!extension_loaded($ext)) {
-		        throw new ConfigurationException('The AGMS PHP library requires the ' . $ext . ' extension.');
+		        throw new \Agms\Exception\ConfigurationException('The AGMS PHP library requires the ' . $ext . ' extension.');
 		    }
 		}
 
 
-		// Verify that developer has configured library specific to their account
-		if ((self::$Api_Username == 'your username') || (self::$Api_Password == 'your password') || (self::$Api_Account == 'your account') || (\Agms\Utility\Settings::$Api_Key == 'your key'))
-		   throw new ConfigurationException('The AGMS PHP library is still configured with installation defaults and will not function properly.  Please configure your path and API credentials for your server and try again.');
+		/// Verify that developer has configured library specific to their account
+		if ((self::$Path_To_Agms_Folder == '/set/this/path/') || (self::$Api_Username == 'your username') || (self::$Api_Password == 'your password') || (self::$Api_Account == 'your account') || (\Agms\Utility\Settings::$Api_Key == 'your key'))
+		   throw new \Agms\Exception\ConfigurationException('The AGMS PHP library is still configured with installation defaults and will not function properly.  Please configure your path and API credentials for your server and try again.');
+
+
 
 
 

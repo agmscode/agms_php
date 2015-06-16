@@ -12,9 +12,6 @@
 
 namespace Agms\Response;
 
-use \Agms\Utility\Settings;
-use \Agms\Exception\UnexpectedException;
-
 abstract class Response 
 {
 
@@ -75,7 +72,7 @@ abstract class Response
 			return $response;
 
 		} else {
-			throw new UnexpectedException('Response mapping not defined for this API.');
+			throw new \Agms\Exception\UnexpectedException('Response mapping not defined for this API.');
 		}
 
 	} // mapResponse()
@@ -101,9 +98,9 @@ abstract class Response
 				} else {
 
 					if (!array_key_exists($key, $mapping)) {
-						if (Settings::$Debug)
+						if (\Agms\Utility\Settings::$Debug)
 							echo 'key ' . $key . ' value ' . $value . "\n";
-						throw new UnexpectedException('Unmapped field ' . $key . ' in response');
+						throw new \Agms\Exception\UnexpectedException('Unmapped field ' . $key . ' in response');
 					}
 					else
 						$response[$mapping[$key]] = $value;
