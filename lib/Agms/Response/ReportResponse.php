@@ -215,7 +215,7 @@ class ReportResponse extends Response
                     'moduser' => 'modified_by',
                     'useragent' => 'user_agent',
                 );
-                $array = array_values((array) $response->transctions);
+                $array = array_values((array) $response->transactions);
 
 				if ($array)
 					$this->response = $array[0];
@@ -239,11 +239,12 @@ class ReportResponse extends Response
 	{
 
 		$array = parent::toArray();
-
-		if (sizeof($array) > 0) {
+        if (sizeof($array) > 0) {
 			foreach ($array AS $index => $data) {
-				$data['card_type'] = Agms::whatCardType($data['cc_number']);
-				$array[$index] = $data;
+                if (array_key_exists('cc_number', $data)) {
+                    $data['card_type'] = Agms::whatCardType($data['cc_number']);
+                }
+                $array[$index] = $data;
 			}
 		}
 

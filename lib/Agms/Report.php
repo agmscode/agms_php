@@ -43,8 +43,7 @@ class Report extends Agms
 		} // foreach params
 
 		$this->execute();
-
-		return $this->response->toArray();
+        return $this->response->toArray();
 		
 	} // listTransactions()
 
