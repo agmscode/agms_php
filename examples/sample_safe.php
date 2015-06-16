@@ -1,11 +1,13 @@
+<?php namespace Agms;?>
 <h1>SAFE Usage Examples</h1>
 <br /><br />
 <a href="index.php">Back to Index</a>
 <br /><br />
 <pre>
 <?php
-
 require('init.php');
+use \Agms\SAFE;
+
 
 /**
  *
@@ -14,7 +16,7 @@ require('init.php');
  **/
 
 
-$safe = new \Agms\SAFE();
+$safe = new SAFE();
 
 $params = array(
 			'payment_type' => array('value' => 'creditcard'),
@@ -40,7 +42,7 @@ unset($safe, $result);
  **/
 
 
-$safe = new \Agms\SAFE();
+$safe = new SAFE();
 
 $params = array(
 			'safe_id' => $safe_id,
@@ -63,7 +65,7 @@ unset($safe, $result);
  **/
 
 
-$safe = new \Agms\SAFE();
+$safe = new SAFE();
 
 $params = array(
 			'safe_id' => $safe_id

@@ -1,11 +1,12 @@
+<?php namespace Agms;?>
 <h1>Recurring Usage Examples</h1>
 <br /><br />
 <a href="index.php">Back to Index</a>
 <br /><br />
 <pre>
 <?php
-
 require('init.php');
+use \Agms\Recurring;
 
 
 
@@ -15,7 +16,7 @@ require('init.php');
  * 
  **/
 
-$recur = new \Agms\Recurring();
+$recur = new Recurring();
 
 $params = array(
 			'RecurringAmount' => array('value' => '20.00'),
@@ -25,6 +26,8 @@ $params = array(
 			'LastName' => array('value' => 'Recurring'),
 			'StartDate' => array('value' => '2014-11-09'),
 			'EndDate' => array('value' => '2018-11-09'),
+			'Frequency' => array('value' => 'months'),
+			'NumberOfRetries' => array('value' => 2)
 		);
 
 $result = $recur->add($params);

@@ -1,13 +1,12 @@
+<?php namespace Agms;?>
 <h1>Transaction Usage Examples</h1>
 <br /><br />
 <a href="index.php">Back to Index</a>
 <br /><br />
 <pre>
 <?php
-
 require('init.php');
-
-
+use \Agms\Transaction;
 
 /**
  *
@@ -16,7 +15,7 @@ require('init.php');
  **/
 
 
-$trans = new \Agms\Transaction();
+$trans = new Transaction();
 
 $params = array(
 			'transaction_type' => 'sale',
@@ -39,7 +38,7 @@ unset($trans, $result);
  **/
 
 
-$trans = new \Agms\Transaction();
+$trans = new Transaction();
 
 $params = array(
 			'transaction_type' => array('value' => 'sale'),
@@ -62,7 +61,7 @@ unset($trans, $result);
  **/
 
 
-$trans = new \Agms\Transaction();
+$trans = new Transaction();
 
 $params = array(
 			'transaction_type' => array('value' => 'sale'),

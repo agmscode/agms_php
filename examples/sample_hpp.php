@@ -1,11 +1,12 @@
+<?php namespace Agms;?>
 <h1>HPP Usage Examples</h1>
 <br /><br />
 <a href="index.php">Back to Index</a>
 <br /><br />
 <pre>
 <?php
-
 require('init.php');
+use \Agms\HPP;
 
 
 /**
@@ -14,7 +15,7 @@ require('init.php');
  * 
  **/
 
-$hpp = new \Agms\HPP();
+$hpp = new HPP();
 
 $params = array(
 			'transaction_type' => array('value' => 'sale'),
@@ -41,7 +42,7 @@ unset($hpp, $result);
  * 
  **/
 
-$hpp = new \Agms\HPP();
+$hpp = new HPP();
 
 $params = array(
 			'transaction_type' => array('value' => 'sale'),
@@ -91,7 +92,7 @@ unset($hpp, $result);
  *   [statusmsg] => Approved
  **/
 
-$hpp = new \Agms\HPP();
+$hpp = new HPP();
 
 $params = array(
 			'transaction_type' => array('value' => 'sale'),
