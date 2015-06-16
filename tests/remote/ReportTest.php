@@ -20,7 +20,7 @@ class ReportTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->report instanceof Report);
     }
 
-    public function testSuccessfulRTransactionAPI()
+    public function testSuccessfulTransactionAPI()
     {
         $params = array(
             'start_date' => '2015-03-25',

@@ -54,6 +54,7 @@ class ReportResponse extends Response
 					'seccode' => 'ach_sec_code',
 					'safeaction' => 'safe_action',
 					'responsesafeid' => 'safe_id',
+					'safeid'=> 'safe_id',
 					'clerkid' => 'clerk_id',
 					'firstname' => 'first_name',
 					'lastname' => 'last_name',
