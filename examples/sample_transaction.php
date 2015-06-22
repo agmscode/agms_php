@@ -94,6 +94,7 @@ $params = array(
 			'shipping_state' => array('value' => 'MN'),
 			'shipping_zip' => array('value' => '55443'),
 			'shipping_country' => array('value' => 'US'),
+            'shipping_email' => array('value' => 'joe@smith.com'),
 			'shipping_phone' => array('value' => '444-444-4444'),
 			'shipping_fax' => array('value' => '555-555-5555'),
 			'shipping_carrier' => array('value' => 'ups'),

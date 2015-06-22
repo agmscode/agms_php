@@ -184,9 +184,6 @@ class ReportResponse extends Response
                     'CreateUser' => 'created_by',
                     'ModUser' => 'modified_by',
                     'UserAgent' => 'user_agent',
-                    'Internal' => 'internal',
-                    '0' => '0',
-                    '1' => '1'
                 );
 
                 $array = array_values((array) $response->saferecords);
