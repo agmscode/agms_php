@@ -112,7 +112,6 @@ abstract class Agms
             $requestBody = $request->get($this->username, $this->password, $this->account, $this->key);
 
             $response = $connect->connect($this->api_url, $requestBody, $requestmethod, $responseobject);
-
             $this->response = new $this->responseObject($response, $this->op);
 
             if (\Agms\Utility\Settings::$Verbose)

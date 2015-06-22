@@ -28,7 +28,6 @@ class SAFEResponse extends Response
 			'CVV2_MSG' => 'cvv_message',
 			'ORDERID' => 'order_id',
 			'SAFE_ID' => 'safe_id',
-			'SafeID' => 'safe_id',
 			'FULLRESPONSE' => 'full_response',
 			'POSTSTRING' => 'post_string',
 			'BALANCE' => 'gift_balance',

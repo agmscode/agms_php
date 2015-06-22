@@ -71,7 +71,7 @@ class SAFETest extends PHPUnit_Framework_TestCase
             'cc_number' => array( 'value' => '4111111111111111'),
             'cc_exp_date' => array( 'value' => '0520'),
             'cc_cvv' => array( 'value' => '123'),
-            'safe_id' => $safe_id
+            'safe_id' => array( 'value' => $safe_id)
         );
 
         $result = $this->safe->update($params);

@@ -87,8 +87,7 @@ class Connect
 								'<' . $requestmethod . ' xmlns="https://gateway.agms.com/roxapi/">',
 								'</' . $requestmethod . '>'
 							);
-
-			if (empty($requestBody))
+            if (empty($requestBody))
 				throw new \Agms\Exception\ClientErrorException('Empty request body.');
 
 			$header = $this->buildCurlHeader(strlen($requestBody));
@@ -400,7 +399,7 @@ class Connect
     } // getParameterName()
 
 
-    private static function createElements(&$writer, $array) 
+    private function createElements(&$writer, $array)
     {
        
         if (!is_array($array)) {

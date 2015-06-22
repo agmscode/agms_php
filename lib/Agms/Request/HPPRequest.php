@@ -17,17 +17,23 @@ class HPPRequest extends Request
 
 	/************ Object Variables ************/
 	protected $fields = array(
-		'Amount' => array('setting' => '', 'value' => ''),
+        'HPPFormat' => array('setting' => '', 'value' => ''),
+        'Amount' => array('setting' => '', 'value' => ''),
 		'OrderDescription' => array('setting' => '', 'value' => ''),
 		'RetURL' => array('setting' => '', 'value' => ''),
 		'ACHEnabled' => array('setting' => '', 'value' => '0'),
 		'SAFE_ID' => array('setting' => '', 'value' => ''),
 		'TransactionType' => array('setting' => '', 'value' => ''),
 		'AutoSAFE' => array('setting' => '', 'value' => ''),
-		'ProcessorID' => array('setting' => '', 'value' => ''),
+        'SupressAutoSAFE' => array('setting' => '', 'value' => ''),
+        'ProcessorID' => array('setting' => '', 'value' => ''),
 		'Donation' => array('setting' => '', 'value' => 'False'),
 		'UsageCount' => array('setting' => '', 'value' => '9999999'),
-		'Internal' => array('setting' => '', 'value' => ''),
+        'StartDate' => array('setting' => '', 'value' => ''),
+        'EndDate' => array('setting' => '', 'value' => ''),
+        'StartTime' => array('setting' => '', 'value' => ''),
+        'EndTime' => array('setting' => '', 'value' => ''),
+        'Internal' => array('setting' => '', 'value' => ''),
 		'FirstName' => array('setting' => '', 'value' => ''),
 		'LastName' => array('setting' => '', 'value' => ''),
 		'Company' => array('setting' => '', 'value' => ''),
@@ -69,12 +75,6 @@ class HPPRequest extends Request
 		'Custom_Field_8' => array('setting' => '', 'value' => ''),
 		'Custom_Field_9' => array('setting' => '', 'value' => ''),
 		'Custom_Field_10' => array('setting' => '', 'value' => ''),
-		'HPPFormat' => array('setting' => '', 'value' => ''),
-		'StartDate' => array('setting' => '', 'value' => ''),
-		'EndDate' => array('setting' => '', 'value' => ''),
-		'StartTime' => array('setting' => '', 'value' => ''),
-		'EndTime' => array('setting' => '', 'value' => ''),
-		'SupressAutoSAFE' => array('setting' => '', 'value' => ''),
 	);
 
 	

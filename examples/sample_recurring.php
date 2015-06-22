@@ -14,7 +14,7 @@ require('init.php');
  * A sample recurring add
  * 
  **/
-/*
+
 $recur = new \Agms\Recurring();
 
 $params = array(
@@ -38,7 +38,6 @@ echo "\n\n";
 var_dump($result);
 
 unset($recur, $result);
-*/
 
 /**
  *

@@ -18,8 +18,8 @@ require('init.php');
 $rep = new \Agms\Report();
 
 $params = array(
-			'start_date' => array('value' => '2014-09-24'),
-			'end_date' => array('value' => '2014-01-09'),
+			'start_date' => array('value' => '2014-09-09'),
+			'end_date' => array('value' => '2014-01-24'),
 		);
 
 $report = $rep->listTransactions($params);

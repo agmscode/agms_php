@@ -80,9 +80,16 @@ class SAFERequest extends Request
 		'SAFE_Action' => array('setting' => '', 'value' => ''),
 		'SAFE_ID' => array('setting' => '', 'value' => ''),
 		'ReceiptType' => array('setting' => '', 'value' => ''),
-		'MagData' => array('setting' => '', 'value' => ''),
-		'MagHardware' => array('setting' => '', 'value' => ''),
-	); // fields
+		'CCNumber2' => array('setting' => '', 'value' => ''),
+        'Clerk_ID' => array('setting' => '', 'value' => ''),
+        'Billing_Code' => array('setting' => '', 'value' => ''),
+        'InvoiceID' => array('setting' => '', 'value' => ''),
+        'BatchID' => array('setting' => '', 'value' => ''),
+        'MagData' => array('setting' => '', 'value' => ''),
+        'MagHardware' => array('setting' => '', 'value' => ''),
+        'MagData' => array('setting' => '', 'value' => ''),
+
+    ); // fields
 
 
 	// Fields that must be numeric

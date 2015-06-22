@@ -23,7 +23,7 @@ class ReportResponse extends Response
 	public function __construct($response, $op) 
 	{
 
-		$this->op = $op;
+        $this->op = $op;
 
 		switch ($this->op) {
 
@@ -178,22 +178,15 @@ class ReportResponse extends Response
                     'CustomField8' => 'custom_field_8',
                     'CustomField9' => 'custom_field_9',
                     'CustomField10' => 'custom_field_10',
-                    'CustomField11' => 'custom_field_11',
-                    'CustomField12' => 'custom_field_12',
-                    'CustomField13' => 'custom_field_13',
-                    'CustomField14' => 'custom_field_14',
-                    'CustomField15' => 'custom_field_15',
-                    'CustomField16' => 'custom_field_16',
-                    'CustomField17' => 'custom_field_17',
-                    'CustomField18' => 'custom_field_18',
-                    'CustomField19' => 'custom_field_19',
-                    'CustomField20' => 'custom_field_20',
                     'Active' => 'active',
                     'CreateDate' => 'date_created',
                     'ModDate' => 'date_last_modified',
                     'CreateUser' => 'created_by',
                     'ModUser' => 'modified_by',
                     'UserAgent' => 'user_agent',
+                    'Internal' => 'internal',
+                    '0' => '0',
+                    '1' => '1'
                 );
 
                 $array = array_values((array) $response->saferecords);

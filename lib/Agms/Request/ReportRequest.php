@@ -41,7 +41,7 @@ class ReportRequest extends Request
 	protected $safefields = array(
 		'Active' => array('setting' => '', 'value' => ''),
 		'PaymentType' => array('setting' => '', 'value' => ''),
-		'SafeID' => array('setting' => '', 'value' => ''),
+		'SAFE_ID' => array('setting' => '', 'value' => ''),
 		'StartDate' => array('setting' => '', 'value' => ''),
 		'EndDate' => array('setting' => '', 'value' => ''),
 		'FirstName' => array('setting' => '', 'value' => ''),

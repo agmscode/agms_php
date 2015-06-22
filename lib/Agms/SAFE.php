@@ -60,8 +60,7 @@ class SAFE extends Agms
 		$this->setParameter('SAFE_Action', array('value' => 'update_safe'));
 
 		foreach ($params AS $param => $config) {
-
-			$this->setParameter($param, $config);
+            $this->setParameter($param, $config);
 
 		} // foreach params
 

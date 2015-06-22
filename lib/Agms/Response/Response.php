@@ -39,8 +39,7 @@ abstract class Response
 		$xmlObj = $this->response;
 
 		$array = $this->objectToArray($xmlObj);
-
-		return $this->mapResponse($array);
+        return $this->mapResponse($array);
 
 	} // toArray()
 
@@ -87,8 +86,7 @@ abstract class Response
 		$i = 0;
 
 		if ($mapping) {
-
-			// We only map the end of the array containing data
+             // We only map the end of the array containing data
 			// If this element is an array, then we map its individual sub-arrays
 			// Otherwise, we map
 			if($array) {
