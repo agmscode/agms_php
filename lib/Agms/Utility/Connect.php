@@ -369,11 +369,6 @@ class Connect
 
         switch ($requestmethod) {
 
-            case 'AddToSAFE':
-            case 'UpdateSAFE':
-            case 'DeleteFromSAFE':
-                return 'vParameter';
-                break;
 
             case 'RecurringAdd':
             case 'RecurringDelete':
@@ -389,6 +384,12 @@ class Connect
             case 'QuerySAFE':
                 return '';
             break;
+
+            case 'AddToSAFE':
+            case 'UpdateSAFE':
+            case 'DeleteFromSAFE':
+                return 'vParameter';
+                break;
 
             default:
                 return 'objparameters';

@@ -38,7 +38,19 @@ class SAFEResponse extends Response
 		);
 
 	/************ Constructor ************/
+	public function __construct($response, $op) 
+	{
 
+		$this->response = $response;
+		$this->op = $op;
+
+		if (!$this->isSuccessful()) {
+			$responseArray = $this->toArray();
+			throw new \Agms\Exception\ResponseException('Transaction failed with error code ' . $responseArray['response_code'] . ' and message ' . $responseArray['response_message']);
+		}
+
+	}
+	
 
 	/************ Public Functions ************/
 	public function isSuccessful() 

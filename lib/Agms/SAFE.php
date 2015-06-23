@@ -18,7 +18,8 @@ class SAFE extends Agms
 {
 
 	/************ Object Variables ************/
-	protected $api_url = 'https://gateway.agms.com/roxapi/AGMS_SAFE_API.asmx?WSDL';
+//	protected $api_url = 'https://gateway.agms.com/roxapi/AGMS_SAFE_API.asmx?WSDL';
+	protected $api_url = 'https://gateway.agms.com/roxapi/agms.asmx?WSDL';
 	protected $requestObject = '\Agms\Request\SAFERequest';
 	protected $responseObject = '\Agms\Response\SAFEResponse';
 
@@ -101,19 +102,19 @@ class SAFE extends Agms
 
 			case 'AddToSAFE':
 
-				$this->doConnect('AddToSAFE', 'AddToSAFEResponse');
+				$this->doConnect('ProcessTransaction', 'ProcessTransactionResponse');
 
 				break;
 
 			case 'UpdateSAFE':
 			
-				$this->doConnect('UpdateSAFE', 'UpdateSAFEResponse');
+				$this->doConnect('ProcessTransaction', 'ProcessTransactionResponse');
 
 				break;
 
 			case 'DeleteFromSAFE':
 			
-				$this->doConnect('DeleteFromSAFE', 'DeleteFromSAFEResponse');
+				$this->doConnect('ProcessTransaction', 'ProcessTransactionResponse');
 
 				break;
 

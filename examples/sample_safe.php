@@ -16,11 +16,11 @@ require('init.php');
 $safe = new \Agms\SAFE();
 
 $params = array(
-			'payment_type' => array('value' => 'creditcard'),
-			'first_name' => array('value' => 'test first'),
-			'last_name' => array('value' => 'test last'),
-			'cc_number' => array('value' => '4111111111111111'),
-			'cc_exp_date' => array('value' => '1220'),
+			'payment_type' => 'creditcard',
+			'first_name' => 'test first',
+			'last_name' => 'test last',
+			'cc_number' => '4111111111111111',
+			'cc_exp_date' => '1220',
 		);
  
 $result = $safe->add($params);
@@ -43,8 +43,9 @@ $safe = new \Agms\SAFE();
 
 $params = array(
 			'safe_id' => $safe_id,
-			'first_name' => array('value' => 'test first updated'),
-			'last_name' => array('value' => 'test last updated'),
+			'first_name' => 'test first updated',
+			'last_name' => 'test last updated',
+			'payment_type' => 'creditcard',
 		);
 
 $result = $safe->update($params);
