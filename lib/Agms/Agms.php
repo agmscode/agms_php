@@ -18,7 +18,7 @@ abstract class Agms
     /************ Object Constants ************/
     // Version data
     const MAJOR = 0;
-    const MINOR = 7;
+    const MINOR = 8;
     const TINY = 0;
 
     const API = 3;
