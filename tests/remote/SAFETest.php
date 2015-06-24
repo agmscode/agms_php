@@ -139,7 +139,6 @@ class SAFETest extends PHPUnit_Framework_TestCase
         $params = array(
             'safe_id' => array('value' => $safe_id)
         );
-
         $result = $this->safe->delete($params);
         $this->assertEquals(1, $result['response_code']);
         $this->assertEquals("SAFE record has been deactivated", $result['response_message']);
