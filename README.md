@@ -2,6 +2,12 @@
 
 The AGMS Gateway PHP Code Library provides integration access to the AGMS Gateway.
 
+[![Build Status](https://travis-ci.org/agmscode/agms_php.svg?branch=master)](https://travis-ci.org/agmscode/agms_php)
+[![Latest Stable Version](https://poser.pugx.org/agmscode/agms_php/v/stable)](https://packagist.org/packages/agmscode/agms_php)
+[![Total Downloads](https://poser.pugx.org/agmscode/agms_php/downloads)](https://packagist.org/packages/agmscode/agms_php)
+[![Latest Unstable Version](https://poser.pugx.org/agmscode/agms_php/v/unstable)](https://packagist.org/packages/agmscode/agms_php)
+[![License](https://poser.pugx.org/agmscode/agms_php/license)](https://packagist.org/packages/agmscode/agms_php)
+
 ## Dependencies
 
 PHP version >= 5.2.1 required.
