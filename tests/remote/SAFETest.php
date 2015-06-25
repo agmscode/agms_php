@@ -6,6 +6,8 @@ require_once realpath(dirname(__FILE__)) . '/../TestHelper.php';
 
 use PHPUnit_Framework_TestCase;
 use \Agms\SAFE;
+use Agms\Exception\ResponseException;
+
 
 class SAFETest extends PHPUnit_Framework_TestCase
 {
@@ -13,6 +15,7 @@ class SAFETest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->safe = new SAFE();
+
     }
 
     public function testSAFEClassAssignment()
@@ -43,9 +46,14 @@ class SAFETest extends PHPUnit_Framework_TestCase
             'last_name' => array( 'value' => 'Smith'),
             'cc_number' => array( 'value' => '4111111111111111')
         );
-        $result = $this->safe->add($params);
-        $this->assertEquals(10, $result['response_code']);
-        $this->assertEquals("Add to safe failed: Missing 'credit card' info.", $result['response_message']);
+        try {
+            $this->safe->add($params);
+        } catch (ResponseException $e) {
+            $args =$e->getTrace();
+            $args = $args[0]['args'][0];
+            $this->assertEquals(3, (string) $args->STATUS_CODE);
+            $this->assertEquals("SAFE Record failed to add successfully.  No transaction processed. Adding a SAFE record of type 'creditcard' requires a CCExpDate|", (string) $args->STATUS_MSG);
+        }
     }
 
     public function testSuccessfulSAFEUpdate()
@@ -102,10 +110,14 @@ class SAFETest extends PHPUnit_Framework_TestCase
             'cc_exp_date' => array( 'value' => '0520'),
             'cc_cvv' => array( 'value' => '123')
         );
-
-        $result = $this->safe->update($params);
-        $this->assertEquals(10, $result['response_code']);
-        $this->assertEquals("Update safe failed. No SAFE ID given.", $result['response_message']);
+        try {
+            $this->safe->update($params);
+        } catch (ResponseException $e) {
+            $args =$e->getTrace();
+            $args = $args[0]['args'][0];
+            $this->assertEquals(3, (string) $args->STATUS_CODE);
+            $this->assertEquals("SAFE Record failed to update successfully.  No transaction processed. ", (string) $args->STATUS_MSG);
+        }
     }
 
     public function testSuccessfulSAFEDelete()
@@ -127,7 +139,6 @@ class SAFETest extends PHPUnit_Framework_TestCase
         $params = array(
             'safe_id' => array('value' => $safe_id)
         );
-
         $result = $this->safe->delete($params);
         $this->assertEquals(1, $result['response_code']);
         $this->assertEquals("SAFE record has been deactivated", $result['response_message']);
@@ -146,10 +157,15 @@ class SAFETest extends PHPUnit_Framework_TestCase
         $result = $this->safe->add($params);
         $this->assertEquals(1, $result['response_code']);
         $this->assertEquals("SAFE Record added successfully. No transaction processed.", $result['response_message']);
+        try {
+            $this->safe->delete($params);
+        } catch (ResponseException $e) {
+            $args =$e->getTrace();
+            $args = $args[0]['args'][0];
+            $this->assertEquals(10, (string) $args->STATUS_CODE);
+            $this->assertEquals("Validation Error.  SAFE_ID is required. ", (string) $args->STATUS_MSG);
+        }
 
-        $result = $this->safe->delete($params);
-        $this->assertEquals(10, $result['response_code']);
-        $this->assertEquals("Delete from safe failed. No SAFE ID given.", $result['response_message']);
     }
 
 

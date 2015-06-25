@@ -222,10 +222,10 @@ abstract class Request
 			$fieldname = 'EMail';
 		if ($fieldname == 'ShippingEmail')
 			$fieldname = 'ShippingEMail';
-
-		// Check that field exists
+        
+        // Check that field exists
 		if (!$this->fields[$fieldname]) {
-			throw new \Agms\Exception\InvalidParameterException('Invalid fieldname ' . $name . '.');
+            throw new \Agms\Exception\InvalidParameterException('Invalid fieldname ' . $name . '.');
 		}
 
 		// Ensure that setting parameters are forced to all lowercase and are case insensitive
@@ -490,8 +490,8 @@ abstract class Request
 	{
 
 		if (array_key_exists($name, self::$mapping))
-			return self::$mapping[$name];
-		elseif (array_key_exists($name, self::$mapping_alias))
+            return self::$mapping[$name];
+        elseif (array_key_exists($name, self::$mapping_alias))
 			return self::$mapping_alias[$name];
 		elseif (array_key_exists($name, $this->fields))
 			return $name;
