@@ -222,9 +222,7 @@ abstract class Request
 			$fieldname = 'EMail';
 		if ($fieldname == 'ShippingEmail')
 			$fieldname = 'ShippingEMail';
-        if ($fieldname == 'SafeID')
-            $fieldname = 'SAFE_ID';
-
+        
         // Check that field exists
 		if (!$this->fields[$fieldname]) {
             throw new \Agms\Exception\InvalidParameterException('Invalid fieldname ' . $name . '.');
