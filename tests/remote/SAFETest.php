@@ -14,17 +14,19 @@ class SAFETest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->safe = new SAFE();
+
 
     }
 
     public function testSAFEClassAssignment()
     {
+        $this->safe = new SAFE();
         $this->assertTrue($this->safe instanceof SAFE);
     }
 
     public function testSuccessfulSAFEAdd()
     {
+        $this->safe = new SAFE();
         $params = array(
             'payment_type' => array('value' => 'creditcard'),
             'first_name' => array( 'value' => 'Joe'),
@@ -40,6 +42,7 @@ class SAFETest extends PHPUnit_Framework_TestCase
 
     public function testFailedSAFEAdd()
     {
+        $this->safe = new SAFE();
         $params = array(
             'payment_type' => array('value' => 'creditcard'),
             'first_name' => array( 'value' => 'Joe'),
@@ -58,6 +61,7 @@ class SAFETest extends PHPUnit_Framework_TestCase
 
     public function testSuccessfulSAFEUpdate()
     {
+        $this->safe = new SAFE();
         $params = array(
             'payment_type' => array('value' => 'creditcard'),
             'first_name' => array( 'value' => 'Joe'),
@@ -90,6 +94,7 @@ class SAFETest extends PHPUnit_Framework_TestCase
 
     public function testFailedSAFEUpdate()
     {
+        $this->safe = new SAFE();
         $params = array(
             'payment_type' => array('value' => 'creditcard'),
             'first_name' => array( 'value' => 'Joe'),
@@ -122,6 +127,7 @@ class SAFETest extends PHPUnit_Framework_TestCase
 
     public function testSuccessfulSAFEDelete()
     {
+        $this->safe = new SAFE();
         $params = array(
             'payment_type' => array('value' => 'creditcard'),
             'first_name' => array( 'value' => 'Joe'),
@@ -146,6 +152,7 @@ class SAFETest extends PHPUnit_Framework_TestCase
 
     public function testFailedSAFEDelete()
     {
+        $this->safe = new SAFE();
         $params = array(
             'payment_type' => array('value' => 'creditcard'),
             'first_name' => array( 'value' => 'Joe'),
