@@ -106,7 +106,6 @@ require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Request/TransactionReque
 // Response
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Response/Response.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Response/HPPResponse.php');
-require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Response/InvoicingResponse.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Response/RecurringResponse.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Response/ReportResponse.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Response/SAFEResponse.php');
@@ -133,7 +132,6 @@ require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Exception/UpgradeRequire
 
 // API Objects
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'HPP.php');
-require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Invoicing.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Recurring.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Report.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'SAFE.php');
