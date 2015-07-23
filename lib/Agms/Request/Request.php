@@ -38,7 +38,8 @@ abstract class Request
 
 	// Friendly fieldname mapping
 	protected static $mapping_alias;
-	protected static $mapping = array(
+	protected static $mapping;
+	protected static $mapping_master = array(
 		'gateway_username' => 'GatewayUserName',
 		'gateway_password' => 'GatewayPassword',
 		'gateway_account' => 'AccountNumber',
@@ -144,6 +145,7 @@ abstract class Request
 	{
 
 		$this->op = $op;
+		self::$mapping = self::$mapping_master;
 
 		for ($i = 1; $i <= 10; $i++) {
 
