@@ -49,6 +49,7 @@ class ReportResponse extends Response
 					'accountholdertype' => 'ach_business_or_personal',
 					'accounttype' => 'ach_checking_or_savings',
 					'seccode' => 'ach_sec_code',
+					'SecCode' => 'ach_sec_code',
 					'safeaction' => 'safe_action',
 					'responsesafeid' => 'safe_id',
 					'safeid'=> 'safe_id',
