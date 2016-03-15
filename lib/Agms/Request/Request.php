@@ -25,14 +25,14 @@ abstract class Request
 	// Placeholders to prevent undefined errors
 	protected $required;
 	protected $numeric;
-	protected $optionable;
+	protected $optionable = array();
 	protected $enums;
 	protected $date;
 	protected $time;
 	protected $boolean;
 	protected $state;
 	protected $amount;
-	protected $zeroes;
+	protected $zeroes = array();
 
 	protected $needsAccount;
 	protected $needsKey;
