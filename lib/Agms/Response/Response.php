@@ -53,7 +53,8 @@ abstract class Response
 
 		foreach ((array) $xmlObj as $index => $node) {
 
-	        $out[$index] = (is_object($node) ? $this->objectToArray($node) : $node);
+	        $out[$index] = (is_object($node) ? $this->objectToArray($node) : (is_array($node) ? implode("\n", $node) : $node));
+
 	    }
 
 	    return $out;
@@ -95,8 +96,16 @@ abstract class Response
 				foreach ($array AS $key => $value) {
 
 					if (is_array($value)) {
-						$response[] = $this->doMap($value);
-					} else {
+
+							if (!array_key_exists($key, $mapping)) {
+								$response[] = $this->doMap($value);
+							}
+							else {
+								$response[$mapping[$key]] = $this->doMap($value);
+							}
+
+					} 
+					else {
 
 						if (!array_key_exists($key, $mapping)) {
 							if (\Agms\Utility\Settings::$Debug)

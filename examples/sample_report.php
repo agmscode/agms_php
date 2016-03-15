@@ -18,8 +18,8 @@ require('init.php');
 $rep = new \Agms\Report();
 
 $params = array(
-			'start_date' => array('value' => '2014-09-09'),
-			'end_date' => array('value' => '2014-01-24'),
+			'start_date' => array('value' => '2016-03-15'),
+			'end_date' => array('value' => '2016-03-15'),
 		);
 
 $report = $rep->listTransactions($params);
@@ -39,8 +39,8 @@ unset($rep);
 $rep = new \Agms\Report();
 
 $params = array(
-			'StartDate' => array('value' => '2015-06-16'),
-			'EndDate' => array('value' => '2015-06-16'),
+			'StartDate' => array('value' => '2016-03-15'),
+			'EndDate' => array('value' => '2016-03-15'),
 		);
 
 $report = $rep->listSAFEs($params);

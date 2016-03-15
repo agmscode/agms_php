@@ -381,6 +381,10 @@ class Connect
                 return 'vRecurringSearchParams';
                 break;
 
+            case 'BoardMerchant':
+                return 'BoardingParams';
+                break;
+
             case 'QuerySAFE':
                 return '';
             break;

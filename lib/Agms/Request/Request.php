@@ -32,6 +32,7 @@ abstract class Request
 	protected $boolean;
 	protected $state;
 	protected $amount;
+	protected $zeroes;
 
 	protected $needsAccount;
 	protected $needsKey;
@@ -222,8 +223,8 @@ abstract class Request
 		// Fix for odd capitalization of Email
 		if ($fieldname == 'Email')
 			$fieldname = 'EMail';
-		if ($fieldname == 'ShippingEmail')
-			$fieldname = 'ShippingEMail';
+		if ($fieldname == 'ShippingEMail')
+			$fieldname = 'ShippingEmail';
 
         // Check that field exists
 		if (!$this->fields[$fieldname]) {
@@ -479,6 +480,9 @@ abstract class Request
 					$request[$field] = false;
 				else
 					$request[$field] = \Agms\Utility\Connect::sanitize($settings['value']);
+			} 
+			elseif (in_array($field, $this->zeroes)) {
+				$request[$field] = '0';
 			}
 
 		} // fields

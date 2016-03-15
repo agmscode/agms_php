@@ -102,6 +102,7 @@ require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Request/RecurringRequest
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Request/ReportRequest.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Request/SAFERequest.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Request/TransactionRequest.php');
+require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Request/BoardingRequest.php');
 
 // Response
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Response/Response.php');
@@ -110,6 +111,7 @@ require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Response/RecurringRespon
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Response/ReportResponse.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Response/SAFEResponse.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Response/TransactionResponse.php');
+require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Response/BoardingResponse.php');
 
 // Exceptions
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Exception/AgmsException.php');
@@ -136,6 +138,7 @@ require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Recurring.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Report.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'SAFE.php');
 require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Transaction.php');
+require(\Agms\Utility\Settings::$Path_To_Agms_Folder . 'Boarding.php');
 
 
 

@@ -9,6 +9,7 @@
 <a href="sample_report.php">Report Examples</a><br /><br />
 <a href="sample_recurring.php">Recurring Examples</a><br /><br />
 <a href="sample_safe.php">SAFE Examples</a><br /><br />
+<a href="sample_boarding.php">Boarding Examples</a><br /><br />
 
 </body>
 </html>

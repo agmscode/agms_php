@@ -40,6 +40,22 @@ class RecurringResponse extends Response
 					$this->response = array();
 				break;
 
+			case 'RecurringAdd':
+                $this->mapping = array(
+					'RESULT' => 'response_code',
+					'MSG' => 'response_message',
+					'RecurringID' => 'recurring_id',
+                );
+
+				$this->response = $response;
+
+				if (!$this->isSuccessful()) {
+					$responseArray = $this->toArray();
+					throw new \Agms\Exception\ResponseException('Recurring Add failed with error code ' . $responseArray['response_code'] . ' and message ' . $responseArray['response_message']);
+				}
+
+				break;
+
 			default:
            		throw new \Agms\Exception\InvalidRequestException('Invalid op in Response.');
 				break;
@@ -50,6 +66,20 @@ class RecurringResponse extends Response
 
 
 	/************ Public Functions ************/
+	public function isSuccessful() 
+	{
+
+		$responseArray = $this->toArray();
+		$code = $responseArray['response_code'];
+
+		// We do not throw exceptions on declines, as that has nothing to do with the request or the gateway
+		if (($code != '1') && ($code != '2')) {
+			return false;
+		}
+
+		return true;
+
+	} // isSuccessful()
 
 
 

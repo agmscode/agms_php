@@ -29,7 +29,8 @@ $params = array(
 			'start_date' => '2014-11-09',
 			'end_date' => '2018-11-09',
 			'frequency' => 'months',
-			'number_of_retries' => '2'
+			'number_of_retries' => '2',
+			'quantity' => '6',
 		);
 
 $result = $recur->add($params);
