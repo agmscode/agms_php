@@ -55,8 +55,8 @@ class BoardingResponse extends Response
 						$exceptionmessage .= ' and message "' . $this->boardingResult['validation_error']['response_message'] . '"';
 					if(@$this->boardingResult['error']['response_message'])
 						$exceptionmessage .= ' and message "' . $this->boardingResult['error']['response_message'] . '"';
-					if(@$this->boardingResult[' validation_error']['validation_messages']['validation_message'])
-						$exceptionmessage .= 'with details "' . $this->boardingResult['validation_error']['validation_messages']['validation_message'] . '"';
+					if(@$this->boardingResult['validation_error']['validation_messages']['validation_message'])
+						$exceptionmessage .= ' with details "' . $this->boardingResult['validation_error']['validation_messages']['validation_message'] . '"';
 					if(@$this->boardingResult['error']['exception'])
 						$exceptionmessage .= ' with details "' . $this->boardingResult['error']['exception'] . '"';
 					$exceptionmessage .= '.';
