@@ -33,10 +33,12 @@ class BoardingResponse extends Response
 				$this->mapping = array(
 					'BoardingAPI' => 'response',
 					'Code' => 'response_code',
+					'Error' => 'error',
 					'Message' => 'response_message',
 					'ValidationError' => 'validation_error',
 					'ValidationMessages' => 'validation_messages',
 					'ValidationMessage' => 'validation_message',
+					'Exception' => 'exception',
 				);
 
 
@@ -46,7 +48,21 @@ class BoardingResponse extends Response
 				$this->boardingResult = $responseArray['response'];
 
 				if (!$this->isSuccessful()) {
-					throw new \Agms\Exception\ResponseException('Merchant Boarding failed with error code ' . $this->boardingResult['response_code'] . ' and message ' . $this->boardingResult['validation_error']['response_message'] . ' with details ' . $this->boardingResult['validation_error']['validation_messages']['validation_message']);
+
+					// There are a few different structures to a response message when the request was unsuccessful, use conditionals to build detailed exception message
+					$exceptionmessage = 'Merchant Boarding failed with error code ' . $this->boardingResult['response_code'];
+					if(@$this->boardingResult['validation_error']['response_message'])
+						$exceptionmessage .= ' and message "' . $this->boardingResult['validation_error']['response_message'] . '"';
+					if(@$this->boardingResult['error']['response_message'])
+						$exceptionmessage .= ' and message "' . $this->boardingResult['error']['response_message'] . '"';
+					if(@$this->boardingResult[' validation_error']['validation_messages']['validation_message'])
+						$exceptionmessage .= 'with details "' . $this->boardingResult['validation_error']['validation_messages']['validation_message'] . '"';
+					if(@$this->boardingResult['error']['exception'])
+						$exceptionmessage .= ' with details "' . $this->boardingResult['error']['exception'] . '"';
+					$exceptionmessage .= '.';
+
+					throw new \Agms\Exception\ResponseException($exceptionmessage);
+
 				}
 
 				break;
