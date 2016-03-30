@@ -129,7 +129,7 @@ class BoardingRequest extends Request
 							'PrimaryAccountType' => array('checking', 'savings'),
 							'SecondaryAccountType' => array('checking', 'savings'),
 							'SecondaryType' => array('cc', 'ach'),
-							'ProcessorID' => array('5', '9', '10', '11'),
+							'ProcessorID' => array('5', '9', '10', '11', '15', '16'),
 							'GETI_CCD_IdentityField' => array('ssn', 'dob'),
 							'GETI_PPD_IdentityField' => array('ssn', 'dob'),
 							'GETI_POP_IdentityField' => array('ssn', 'dob'),
