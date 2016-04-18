@@ -155,14 +155,14 @@ class HPPRequest extends Request
 		$fields = $this->getFieldArray();
 
 		if (array_key_exists('AutoSAFE', $fields)) {
-			if($fields['AutoSAFE'] === true)
+			if(($fields['AutoSAFE'] === true) || (($fields['AutoSAFE'] == 1)))
 				$fields['AutoSAFE'] = 1;
 			else
 				$fields['AutoSAFE'] = 0;
 		}
 
 		if (array_key_exists('SupressAutoSAFE', $fields)) {
-			if ($fields['SupressAutoSAFE'] === true)
+			if (($fields['SupressAutoSAFE'] === true) || ($fields['SupressAutoSAFE'] == 1))
 				$fields['SupressAutoSAFE'] = 1;
 			else
 				$fields['SupressAutoSAFE'] = 0;
