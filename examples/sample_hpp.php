@@ -60,6 +60,7 @@ $params = array(
 			'description' => array('value' => 'Eyeglass Repair', 'setting' => 'disabled'),
 			'shipping_first_name' => array('value' => 'Joe', 'setting' => 'disabled'),
 			'shipping_last_name' => array('value' => 'Smith', 'setting' => 'disabled'),
+			'shipping_email' => array('value' => 'test@test.com', 'setting' => 'disabled'),
 			'shipping_zip' => array('value' => '55418', 'setting' => 'disabled'),
 			'shipping_address' => array('value' => '123 Main St.', 'setting' => 'disabled'),
 			'shipping_city' => array('value' => 'Dallas', 'setting' => 'disabled'),

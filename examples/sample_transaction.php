@@ -88,6 +88,7 @@ $params = array(
 			'shipping_first_name' => array('value' => 'Joe'),
 			'shipping_last_name' => array('value' => 'Smith'),
 			'shipping_company_name' => array('value' => 'Smith Enterprises'),
+			'shipping_email' => array('value' => 'test@test.com'),
 			'shipping_address' => array('value' => '125 Main St'),
 			'shipping_address_2' => array('value' => 'Suite C'),
 			'shipping_city' => array('value' => 'Blaine'),
